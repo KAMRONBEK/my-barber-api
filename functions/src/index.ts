@@ -1,19 +1,27 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+// Importing the necessary modules using ES6 syntax
+import * as functions from "firebase-functions";
+import * as admin from "firebase-admin";
+import express from "express";
+import cors from "cors";
 
-import { onRequest } from 'firebase-functions/v2/https';
-import * as logger from 'firebase-functions/logger';
+// Initialize Firebase Admin SDK
+admin.initializeApp();
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
+// Creating an instance of Express app
+const app = express();
 
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+// Use CORS middleware to allow cross-origin requests
+app.use(cors({ origin: true }));
+
+// Define routes for your Express application
+// Example route
+app.get("/", (req, res) => {
+  res.send("Hello from  !");
+});
+
+app.get("/home", (req, res) => {
+  res.send("Hello sucker");
+});
+
+// Export the Express app as a Cloud Function
+export const api = functions.https.onRequest(app);

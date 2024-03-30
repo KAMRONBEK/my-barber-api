@@ -1,0 +1,24 @@
+functions/
+  - package.json
+  - lib/ (compiled JS)
+  - src/
+    - index.ts (entry point only contains exportFunctions() )
+    - api/ (all function triggers in API layer)
+      - auth/
+        - on-create.ts
+        - on-delete.ts
+      - http/
+        - callable-function-name.ts
+        - users/
+          - update-profile.ts
+      - db/
+        - users/ (named after collection)
+          - on-create.ts (path matches trigger)
+    - services/ (imported by API, contains business logic)
+      - auth.ts
+      - transactions.ts
+      - orders.ts
+    - models/ (imported by services, contains logical entities)
+      - user.ts
+      - payment.ts
+      - product.ts
